@@ -4,13 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.databind.annotation.JsonNaming
 
-//이 클래스는 snake case로 동작한다는 의미
+data class UserResponse(
+    var result: Result? = null,
+    var description: String? = null,
+    @JsonProperty("user")
+    var userRequest: MutableList<UserRequest>? = null
+)
+
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
-data class UserRequest(
-    var name: String? = null,
-    var age: Int? = null,
-    var email: String? = null,
-    var address: String? = null,
-    //@JsonProperty("phone_number")
-    var phoneNumber: String? = null
+data class Result(
+    var resultCode: String? = null,
+    var resultMessage: String? = null
 )
